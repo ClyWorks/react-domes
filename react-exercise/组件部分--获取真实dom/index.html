@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+<body>
+	<div id="app"></div>
+	<script type="text/babel">
+		var Myinputval= React.createClass({
+			changeTextInput: function(){
+				this.refs.myTextInput.value="陈立业";
+			},
+			render:function(){
+				return (
+					<div>
+						<input type="text" ref="myTextInput" />
+						<input type="button" value="change input value" onClick={this.changeTextInput} />
+					</div>
+				)
+			}
+		})
+		ReactDOM.render(
+			<Myinputval/>,
+			document.getElementById('app')
+		)
+		/*
+			上面代码中，组件 MyComponent 的子节点有一个文本输入框，用于获取用户的输入。这时就必须获取真实的 DOM 节点，虚拟 DOM 是拿不到用户输入的。为了做到这一点，文本输入框必须有一个 ref 属性，然后 this.refs.[refName] 就会返回这个真实的 DOM 节点。
+			需要注意的是，由于 this.refs.[refName] 属性获取的是真实 DOM ，所以必须等到虚拟 DOM 插入文档以后，才能使用这个属性，否则会报错。上面代码中，通过为组件指定 Click 事件的回调函数，确保了只有等到真实 DOM 发生 Click 事件之后，才会读取 this.refs.[refName] 属性。
+			React 组件支持很多事件，除了 Click 事件以外，还有 KeyDown 、Copy、Scroll 等，完整的事件清单请查看
+		*/
+	</script>
+</body>
+</html>

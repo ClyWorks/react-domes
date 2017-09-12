@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+<body>
+	<div id="app"></div>
+	<div id="app2"></div>
+	<script type="text/babel">
+		var Myisarr=React.createClass({
+			propTypes: {
+				title: React.PropTypes.string.isRequired,
+			},
+			render: function(){
+				return <h1>{this.props.title}</h1>
+			}
+		})
+		var Defaulttle= React.createClass({
+			/*此外，getDefaultProps 方法可以用来设置组件属性的默认值。*/
+			getDefaultProps: function(){
+				return {
+					title: 'hello Default'
+				};
+			},
+			render: function(){
+				return <h1>{this.props.title}</h1>
+			}
+		})
+		var data=1111;
+		ReactDOM.render(
+			<Myisarr title={data}/>,
+			document.getElementById('app')
+		)
+		var i=true;
+		ReactDOM.render(
+			<Defaulttle title={i&&"aaaaa"}/>,	
+			document.getElementById('app2')
+		)
+
+	</script>
+</body>
+</html>

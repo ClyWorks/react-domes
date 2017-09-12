@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+    <script src="../build/jquery.min.js"></script>
+</head>
+<body>
+	<div id="app"></div>
+	<script type="text/babel">
+		var UserList=React.createClass({
+			getInitialState: function(){
+				return{
+					username:'',
+					clickurl:''
+				}
+			},
+			componentDidMount:function(){
+				$.get(this.props.dataurl,function(result){
+					var datalist=result[0];
+					if(this.isMounted()){
+						this.setState({
+							username: datalist.owner.login,
+							clickurl: datalist.html_url
+						})
+					}
+				}.bind(this));
+			},
+			render: function(){
+				return (
+					<div>
+						{this.state.username}请
+						<a href={this.state.clickurl}>点这</a>
+					</div>
+				)
+			}
+		})
+		ReactDOM.render(
+			<UserList dataurl="https://api.github.com/users/octocat/gists" />,
+			document.getElementById('app')
+		)
+	</script>
+</body>
+</html>

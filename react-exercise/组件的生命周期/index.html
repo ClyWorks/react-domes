@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+<body>
+	<div id="app"></div>
+	<script type="text/babel">
+		var Changeop= React.createClass({
+			getInitialState: function(){
+				return {opacity:1.0}
+			},
+			componentDidMount: function(){
+				this.timer=setInterval(function(){
+					var opacity=this.state.opacity;
+					opacity -= 0.5;
+					if(opacity < 0.1){
+						opacity = 1.0;
+					}
+					this.setState({
+						opacity:opacity
+					})
+				}.bind(this),100)
+			},
+			render: function(){
+				return (
+					<div style={{ opacity:this.state.opacity }}>
+						我会爆闪！{this.props.name}
+					</div>
+				)
+			}
+		})
+		ReactDOM.render(
+			<Changeop name="啊啊啊啊啊啊啊啊"/>,
+			document.getElementById('app')
+		)
+		//上面代码在hello组件加载以后，通过 componentDidMount 方法设置一个定时器，每隔100毫秒，就重新设置组件的透明度，从而引发重新渲染。另外，组件的style属性的设置方式也值得注意
+	</script>
+</body>
+</html>

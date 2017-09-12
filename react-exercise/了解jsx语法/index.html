@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+<body>
+	<div id="app"></div>
+	<br>
+	<div>-------------------------------------------------美丽的分割线---------------------------------------------------</div>
+	<br>
+	<div id="app2"></div>
+	<script type="text/babel">
+	var name=['陈晨','李畅','王宇','遇到 HTML 标签（以 < 开头），就用 HTML 规则解析；遇到代码块（以 { 开头），就用 JavaScript 规则解析。']
+	// es6数组新增方法map   类似与jq$.each()
+	// arr.map(function(val,idx,arr){
+
+	// })
+	ReactDOM.render(
+		<div>
+			{
+				name.map(function(name,idx){
+					return <div>Hello,{name+idx}</div>
+				})
+			}
+		</div>,
+		document.getElementById('app')
+		)
+	//jsx语法特性 遇到 HTML 标签（以 < 开头），就用 HTML 规则解析；遇到代码块（以 { 开头），就用 JavaScript 规则解析。
+	
+	var arr=[
+		<div>hello jsx</div>,
+		<div>hello react</div>,
+		<div>JSX 允许直接在模板插入 JavaScript 变量。如果这个变量是一个数组，则会展开这个数组的所有成员</div>
+	]
+	ReactDOM.render(
+		<div>{arr}</div>,
+		document.getElementById('app2')
+	)
+	//JSX 允许直接在模板插入 JavaScript 变量。如果这个变量是一个数组，则会展开这个数组的所有成员
+	</script>
+</body>
+</html>
